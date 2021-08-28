@@ -58,3 +58,9 @@ python3 manage.py runserver
 ```
 /api/v1/posts/{post_id}/comments/
 ```
+
+Весь функционал API:
+
+```
+/redoc/
+```
