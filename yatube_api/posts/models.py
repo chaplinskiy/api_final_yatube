@@ -48,7 +48,6 @@ class Follow(models.Model):
         on_delete=models.CASCADE,
         related_name='user'
     )
-    # author = models.ForeignKey(
     following = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -58,15 +57,9 @@ class Follow(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(
-                # fields=('user', 'author'),
                 fields=['user', 'following'], name='unique_following'
             )
-            # models.CheckConstraint(
-            #     check=~models.Q(following=models.F('user')),
-            #     name='self_following_disallowed'
-            # )
         ]
 
-    # def __str__(self) -> str:
     def __str__(self):
         return f'{self.user} >> {self.following}'

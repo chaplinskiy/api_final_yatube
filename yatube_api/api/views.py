@@ -1,7 +1,7 @@
-# TODO:  Напишите свой вариант
 from django.shortcuts import get_object_or_404
 
 from rest_framework import filters, permissions, viewsets
+from rest_framework.pagination import LimitOffsetPagination
 
 from .serializers import CommentSerializer, GroupSerializer, PostSerializer
 from .serializers import FollowSerializer
@@ -37,11 +37,8 @@ class FollowViewSet(viewsets.ModelViewSet):
         return Follow.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
-        # following = self.request.data.get('following')
-        # following_user = get_object_or_404(User, username=following)
         serializer.save(
             user=self.request.user
-            # following=following_user
         )
 
 
@@ -49,6 +46,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (AuthorOrReadOnly,)
+    pagination_class = LimitOffsetPagination
 
     def perform_create(self, serializer):
         return serializer.save(author=self.request.user)

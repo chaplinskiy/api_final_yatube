@@ -1,8 +1,6 @@
-# from django.db.models.fields import SlugField
 from rest_framework import serializers
 from rest_framework.relations import SlugRelatedField
 from rest_framework.validators import UniqueTogetherValidator
-
 
 from posts.models import Comment, Follow, Group, Post, User
 
@@ -44,13 +42,6 @@ class FollowSerializer(serializers.ModelSerializer):
                 'Подписываться на себя – ну такое!'
             )
         return value
-
-    # def validate(self, value):
-    #     if self.user == self.following:
-    #         raise serializers.ValidationError(
-    #             'Подписываться на себя – ну такое!'
-    #         )
-    #     return value
 
 
 class GroupSerializer(serializers.ModelSerializer):
