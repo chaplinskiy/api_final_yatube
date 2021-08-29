@@ -1,4 +1,4 @@
-#chaplinskiy/api_final_yatube
+# chaplinskiy/api_final_yatube
 
 ## Описание:
 
